@@ -1,0 +1,17 @@
+﻿@using SC_MiniProject.Models;
+@{
+    ViewBag.Title = "ImageRecognitionTask";
+    Layout = null;
+}
+
+<h2>ImageRecognitionTask</h2>
+
+@foreach (var task in (List<ImageRecognition>)ViewBag.ListOfImageRecognitionTasks)
+{
+
+    <li> <img src="@task.ImageUrl" alt="" />@task.ImageUrl </li>
+}
+
+<br />
+@Html.ActionLink("Home", "Index", "Home")
+<img src="~/Images/Apple.jpg" />

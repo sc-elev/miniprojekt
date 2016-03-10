@@ -38,7 +38,14 @@
     <Reference Include="JsonConfig">
       <HintPath>..\packages\JsonConfig.1.0.0\lib\JsonConfig.dll</HintPath>
     </Reference>
+    <Reference Include="JsonFx">
+      <HintPath>..\packages\JsonFx.2.0.1209.2802\lib\net40\JsonFx.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -61,6 +68,12 @@
       <Project>{dc159014-c416-4d6e-9a18-1d954dd972df}</Project>
       <Name>SC_MiniProject</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="default.conf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="settings.conf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

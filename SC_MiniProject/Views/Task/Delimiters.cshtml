@@ -1,0 +1,20 @@
+﻿@model SC_MiniProject.Models.SentenceModel
+
+@{
+    ViewBag.Title = "Delimiters";
+}
+
+<h2>Skiljetecken</h2>
+
+@Model.visible
+<br />
+
+Skriv in meningen med rätt skiljetecken:
+@using (Html.BeginForm())
+{
+    <br />
+    <input type="text" id="userSentence" name="userSentence" />
+    <input type="hidden" name="original" value="@Model.original" />
+    <br />
+    <input type="submit" value="Klar!"/>
+}

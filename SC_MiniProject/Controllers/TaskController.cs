@@ -10,11 +10,11 @@ namespace SC_MiniProject.Controllers
 {
     public class TaskController : Controller
     {
+        private Random rnd = new Random();
         // (1) - ImageRecognitionTask
         // The user is presented with a series of images and is tasked with writing single words matching each of those images.
         public ActionResult ImageRecognitionTask()
         {
-
             return View();
         }
 
@@ -48,6 +48,41 @@ namespace SC_MiniProject.Controllers
         {
             Session["Points"] = testResult.Score;
             return View();
+	}
+
+        public ViewResult Delimiters()
+        {
+            string[] sentences = ConfigFile.Sentences();
+            int ix = rnd.Next(0, sentences.Length);
+            string sentence = sentences[ix];
+            string replaced = (string) sentence.Clone();
+            foreach (var c in new string[] { ",", ".", "?"})
+                replaced = replaced.Replace(c, "*");
+            SentenceModel model =
+                new SentenceModel { visible = replaced, original = sentence};
+            return View("Delimiters", model);
+        }
+
+
+        [HttpPost]
+        public ActionResult Delimiters(SentenceModel model)
+        {
+            if ( model.userSentence == model.original)
+            {
+                // FIXME: Add scores
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("BadDelimiter");
+            }
+        }
+
+
+        public ViewResult BadDelimiter()
+        {
+            return View("BadDelimiter");
+>>>>>>> Delimiters controller unitttest + UI
         }
 
     }

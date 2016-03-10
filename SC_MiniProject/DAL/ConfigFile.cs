@@ -9,7 +9,7 @@ namespace SC_MiniProject.DAL
 {
     public class ConfigFile
     {
-        public static string[] GetFruits()
+        protected static void ScanFiles()
         {
             string[] prefixes = new string[] { "../", "../../", "../../../" };
             foreach (var prefix in prefixes)
@@ -17,16 +17,28 @@ namespace SC_MiniProject.DAL
                 string path = Path.GetFullPath(prefix + "settings.conf");
                 if (System.IO.File.Exists(path))
                 {
-                    Config.User =
-                        Config.ApplyJsonFromPath(path, Config.User);
+                    string json = File.ReadAllText(path);
+                    Config.User =  Config.ParseJson(json);
                     path = Path.GetFullPath(prefix + "default.conf");
-                    Config.Default =
-                        Config.ApplyJsonFromPath(path, Config.Default);
+                    if (!File.Exists(path)) break;
+                    json = File.ReadAllText(path);
+                    Config.Default = Config.ParseJson(json);
                     break;
                 }
             }
+        }
+
+        public static string[] GetFruits()
+        {
+            ScanFiles();
             var v = Config.User.Fruits;
             return v;
+        }
+
+        public static string[] Sentences()
+        {
+            ScanFiles();
+            return Config.User.Sentences;
         }
     }
 }

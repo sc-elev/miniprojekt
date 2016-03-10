@@ -39,10 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JsonConfig">
+    <Reference Include="JsonConfig, Version=1.0.5359.16918, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\JsonConfig.1.0.0\lib\JsonConfig.dll</HintPath>
     </Reference>
-    <Reference Include="JsonFx">
+    <Reference Include="JsonFx, Version=2.0.1209.2802, Culture=neutral, PublicKeyToken=315052dd637f8a52, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\JsonFx.2.0.1209.2802\lib\net40\JsonFx.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -171,6 +173,7 @@
     </Compile>
     <Compile Include="Models\ImageRecognition.cs" />
     <Compile Include="Models\TestResult.cs" />
+    <Compile Include="Models\SentenceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Angular\SC_MiniProjectModule.js" />
     <Content Include="Controllers\TaskController.js" />
@@ -975,6 +978,7 @@
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="default.conf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

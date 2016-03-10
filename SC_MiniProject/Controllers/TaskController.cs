@@ -17,11 +17,6 @@ namespace SC_MiniProject.Controllers
             var list = new ImageRecognitionTask().GetAllImageRecognitionQuestions();
             var rnd = new Random();
             var img = rnd.Next(1, 6);
-
-           
-
-
-            ViewBag.ListOfImageRecognitionTasks = results;
             return View();
         }
 

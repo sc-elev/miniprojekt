@@ -164,6 +164,7 @@
     </Compile>
     <Compile Include="Models\ImageRecognition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Settings\SC_MIniProject_Tasks.txt" />
     <Compile Include="Startup.cs" />
     <Content Include="Views\Task\ImageRecognitionTask.cshtml" />

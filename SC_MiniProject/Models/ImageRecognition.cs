@@ -10,5 +10,6 @@ namespace SC_MiniProject.Models
         public string ImageUrl { get; set;}
         public string CorrectAnswer { get; set; }
         public bool SelectedForTest { get; set; }
+        public bool? AnsweredCorrectly { get; set; }
     }
 }

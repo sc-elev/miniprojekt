@@ -4,11 +4,15 @@
     Layout = null;
 }
 
+<script src="~/Scripts/angular.min.js"></script>
+
 <h2>ImageRecognitionTask</h2>
 
 @foreach (var task in (List<ImageRecognition>)ViewBag.ListOfImageRecognitionTasks)
 {
 
+    
+    
     <li> <img src="@task.ImageUrl" alt="" />@task.ImageUrl </li>
 }
 

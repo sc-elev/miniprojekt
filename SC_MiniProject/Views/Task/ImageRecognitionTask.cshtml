@@ -1,61 +1,56 @@
 ﻿@using SC_MiniProject.Models;
 @{
     ViewBag.Title = "ImageRecognitionTask";
-    Layout = null;
+    //Layout = null;
 }
 
-<!DOCTYPE html>
-<!-- Activates the AngularJS library ng-app="githubViewer" -->
+@*<!DOCTYPE html>
+ Activates the AngularJS library ng-app="githubViewer" 
 <html style="background-color: WHITE !important;">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>mvc project</title>
+    @*<script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/angular.js"></script>
     <script src="~/Angular/SC_MiniProjectModule.js"></script>
     <script src="~/Controllers/TaskService.js"></script>
     <script src="~/Controllers/TaskController.js"></script>
-    <script src="~/Scripts/jquery-1.10.2.js"></script>
-</head>
-    <body ng-app="SC_MiniProjectModule">
-        <h2>Vad föreställer bilden?</h2>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>*@
+    <div ng-app="SC_MiniProjectModule">
+        <fieldset>
+            <legend>Vad föreställer bilden?</legend>
+        </fieldset>
 
         <div ng-controller="TaskController">
     
-            
-            @*<div ng-repeat="question in Questions track by $index" ng-show="$index == CurrentQuestion">*@
                 <div style="display: inline-block; width:250px; height: 240px; float: left">
                     <img src="{{Questions[CurrentQuestion].ImageUrl}}" />
                 </div>
                 <div style="display: inline-block; width:210px; height: 240px; padding: 4px; float: left">
                     <div>
                         Fråga {{CurrentQuestion+1}} av 5 
-                        <input type="text" ng-model="UserAnswer" style="width: 180px" />
+                        <input type="text" ng-model="UserAnswer" class="form-control" style="width: 180px" />
 
-                        <div style="display: inline-block; width:100px; height: 25px; padding: 2px; float: left">
-                            <input type="button" value="Svara" ng-click="onImageRecognitionAnswer_click()" ng-show="AnswerButtonVisible" style="width: 80px" />
+                        <div style="display: inline-block; width:100px; height: 25px; padding: 2px; float: left; padding-top: 10px">
+                            <input type="button" value="Svara" ng-click="onImageRecognitionAnswer_click()" ng-show="AnswerButtonVisible" class="btn btn-default" style="width: 80px" />
                          </div>
-                        <div style="display: inline-block; width:100px; height: 25px; padding: 2px; float: left">
-                            <input type="button" value="{{NextButtonTitle}}" ng-click="onImageRecognitionNext_click()" style="width: 80px" />
+                        <div style="display: inline-block; width:100px; height: 25px; padding: 2px; float: left; padding-top: 10px">
+                            <input type="button" value="{{NextButtonTitle}}" ng-click="onImageRecognitionNext_click()" class="btn btn-default" style="width: 80px" />
                         </div>
                     </div>
-                    <div>
-                        <h2 ng-bind="CorrectAnswer" style="color: Red"></h2>
-                        <h2 ng-bind="Correct" style="color: green"></h2>
+               
+                    <div style="padding-top: 28px">
+                        <h2 ng-bind="CorrectAnswer" style="color: Red; font-size: 16px"></h2>
+                        <h2 ng-bind="Correct" style="color: green; font-size: 16px"></h2>
                     </div>
                 </div>
                 <div style="clear: both;"></div>
-            @*</div>*@
-            
-                @*@foreach (var task in (List<ImageRecognition>)ViewBag.ListOfImageRecognitionTasks)
-                {
 
 
-
-                    <li> <img src="@task.ImageUrl" alt="" />@task.ImageUrl </li>
-                }*@
-
-            <br /><br /><br />
-                @Html.ActionLink("Home", "Index", "Home")
+            <br />
+                @Html.ActionLink("Avbryt", "Index", "Home")
         </div>
-    </body>
+    </div>
 </html>

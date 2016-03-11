@@ -4,7 +4,11 @@
     ViewBag.Title = "Delimiters";
 }
 
-<h2>Skiljetecken</h2>
+<fieldset>
+    <legend>Skiljetecken</lengend>
+
+</fieldset>
+
 
 @Model.visible
 <br />
@@ -13,8 +17,8 @@ Skriv in meningen med rätt skiljetecken:
 @using (Html.BeginForm())
 {
     <br />
-    <input type="text" id="userSentence" name="userSentence" />
-    <input type="hidden" name="original" value="@Model.original" />
+    <input type="text" id="userSentence" name="userSentence" class="form-control" />
+    <input type="hidden" name="original" value="@Model.original"  />
     <br />
-    <input type="submit" value="Klar!"/>
+    <input type="submit" value="Klar!" class="btn btn-default" />
 }

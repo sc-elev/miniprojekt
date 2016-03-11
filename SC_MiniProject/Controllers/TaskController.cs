@@ -15,6 +15,7 @@ namespace SC_MiniProject.Controllers
         // The user is presented with a series of images and is tasked with writing single words matching each of those images.
         public ActionResult ImageRecognitionTask()
         {
+            ViewBag.Scoreboard = new Scoreboard();
             return View();
         }
 

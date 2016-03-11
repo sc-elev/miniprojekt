@@ -11,14 +11,6 @@ myApp.service('TaskService', function ($http) {
                 })
     }
 
-    //this.postImageRecognitionQuestionResult = function (QuestionsAnsweredCorrectly) {
-    //    console.log("Alle2");
-    //    $http.get("/Task/ImageRecognitionQuestions_Post/" + QuestionsAnsweredCorrectly)
-    //            .then(function (data) {
-    //                console.log("Post");
-    //                //return data;
-    //            })
-    //}
 
 });
 

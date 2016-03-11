@@ -1,6 +1,6 @@
 ﻿var myApp = angular.module('SC_MiniProjectModule');
 
-myApp.controller('TaskController', function ($scope, TaskService, $http, $location) {
+myApp.controller('TaskController', function ($scope, TaskService, $http, $window) {
     console.log("is running TaskController...");
 
     $scope.AnswerButtonVisible = true;
@@ -43,20 +43,6 @@ myApp.controller('TaskController', function ($scope, TaskService, $http, $locati
         }
 
         if ($scope.CurrentQuestion == 5) {
-            //var req = {
-            //    method: 'POST',
-            //    url: '/Task/ImageRecognitionQuestions_Post',
-            //    headers: {
-            //        'Content-Type': undefined
-            //    },
-            //    data: { id: $scope.QuestionsAnsweredCorrectly }
-            //}
-
-            ////$http(req).then(function () { console.log("yes.."); }, function () { console.log("No.."); });
-
-            //$http.post("Task/ImageRecognitionQuestions_Post", $scope.QuestionsAnsweredCorrectly).success(function (data) {
-            //    Alert(ok)
-            //})
 
             var data = $.param({
                 TestName: "Alle", 
@@ -71,32 +57,11 @@ myApp.controller('TaskController', function ($scope, TaskService, $http, $locati
 
             $http.post('/Task/ImageRecognitionQuestions_Post', data, config)
             .success(
-            console.log("yes1.")
-                //function (data) {
-                //    $window.location.href = "www.dn.se";
-                //}
-            
-               
-
-            
+                $window.location.href = "/Home/Index"
             )
             .error(console.log("no1."));
 
-            $window.location.href = "www.dn.se";
-
-            //$http.post('/Task/ImageRecognitionQuestions_Post', data, config)
-            //.success(function (data, status, headers, config) {
-            //    $scope.PostDataResponse = data;
-            //})
-            //.error(function (data, status, header, config) {
-            //    $scope.ResponseDetails = "Data: " + data +
-            //        "<hr />status: " + status +
-            //        "<hr />headers: " + header +
-            //        "<hr />config: " + config;
-            //});
         }
-
-        //console.log("clicked next..");
     }
 
 

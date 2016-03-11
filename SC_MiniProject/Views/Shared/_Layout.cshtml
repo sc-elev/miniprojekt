@@ -8,6 +8,11 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/Scripts/Angular")
 
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Angular/SC_MiniProjectModule.js"></script>
+    <script src="~/Controllers/TaskService.js"></script>
+    <script src="~/Controllers/TaskController.js"></script>
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -18,49 +23,82 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("SC MiniProjekt", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse" >
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Vad föreställer bilden?", "ImageRecognitionTask", "Task")</li>
+                
+                    <li style="padding-left: 55px">@Html.ActionLink("Vad föreställer bilden?", "ImageRecognitionTask", "Task")</li>
+                    <li>@Html.ActionLink("Skriv rätt skiljetecken", "Delimiters", "Task")</li>
 
                 </ul>
-                <div>Poäng: @ViewBag.Scoreboard.GetCurrentScore()</div>
-
-               @if (ViewBag.Scoreboard.TopScore() > -1)
-               {
-               <text>Toppresultat:</text> @ViewBag.Scoreboard.TopScorer();
-               <text> - </text>
-               @ViewBag.Scoreboard.TopScore();
-               }
-
-               @if (ViewBag.Scoreboard.OtherScores().Count > 0)
-               {
-                   <table class="scoreboard">
-                   @foreach (var holder in ViewBag.Scoreboard.OtherScores())
-                   {
-                    <tr>
-                        <td>@holder.Score</td>
-                        <td> - </td>
-                        <td>@holder.Nickname</td>
-                    </tr>
-                   }
-                   </table>
-               }
+             
             </div>
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+
+        <h1>Läs, skriv, samlapoäng.</h1>
+        <br />
+        <div class="row">
+            <div class="col-md-2" style="height: 350px; padding: 4px; font-size: 14px; font-family: Arial">
+                <fieldset>
+                    <legend>Toppoäng</legend>
+                </fieldset>
+
+                <div>Poäng: @ViewBag.Scoreboard.GetCurrentScore()</div>
+
+                @if (ViewBag.Scoreboard.TopScore() > -1)
+                {
+                    <text>Toppresultat:</text> @ViewBag.Scoreboard.TopScorer();
+                    <text> - </text>
+                    @ViewBag.Scoreboard.TopScore();
+                }
+
+                @if (ViewBag.Scoreboard.OtherScores().Count > 0)
+                {
+                    @*class="scoreboard"*@
+                    <table class="table-striped" style="width: 100%; border: 1px solid #767697; padding: 3px;" >
+                        <tr>
+                            <th style ="text-align: right;">Poäng</th>
+                            <th></th>
+                            <th>Namn</th>
+                        </tr>
+                        @foreach (var holder in ViewBag.Scoreboard.OtherScores())
+                        {
+
+                            <tr>
+                                <td style="text-align: right;">@holder.Score</td>
+                                <td style="width: 15px; text-align: right;">&nbsp;-&nbsp;</td>
+                                <td>@holder.Nickname</td>
+                            </tr>
+                        }
+                    </table>
+                }
+
+            </div>
+
+            <div class="col-md-1" style="height: 350px; padding: 4px; font-size: 14px; font-family: Arial">
+                &nbsp;
+            </div>
+
+            <div class="col-md-9" style="height: 350px; padding: 4px; font-size: 14px; font-family: Arial">
+
+                @RenderBody()
+
+            </div>
+        </div>
+
+        <div class="row"></div>
+
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @*@RenderSection("scripts", required: false)*@
+    @RenderSection("scripts", required: false)
 </body>
 </html>

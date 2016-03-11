@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SC_MiniProject.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,8 +11,12 @@ namespace SC_MiniProject.Controllers
     {
         public ActionResult Index()
         {
-            var v = View("Index");
-            return View("Index");
+            var scoreboard = new Scoreboard();
+            scoreboard.AddScore("Orvar", 5); //FIXME: conditionalize test data.
+            scoreboard.AddScore("Ivar", 12);
+            scoreboard.AddScore("Pelle", 6);
+            ViewBag.Scoreboard = scoreboard;
+            return View();
         }
 
         public ActionResult About()

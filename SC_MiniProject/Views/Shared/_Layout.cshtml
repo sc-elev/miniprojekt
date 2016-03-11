@@ -24,9 +24,28 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Vad föreställer bilden?", "ImageRecognitionTask", "Task")</li>
-                    
+
                 </ul>
-                @Html.Partial("_LoginPartial")
+               @if (ViewBag.Scoreboard.TopScore() > -1)
+               {
+               <text>Toppresultat:</text> @ViewBag.Scoreboard.TopScorer();
+               <text> - </text>
+               @ViewBag.Scoreboard.TopScore();
+               }
+
+               @if (ViewBag.Scoreboard.OtherScores().Count > 0)
+               {
+                   <table class="scoreboard">
+                   @foreach (var holder in ViewBag.Scoreboard.OtherScores())
+                   {
+                    <tr>
+                        <td>@holder.Score</td>
+                        <td> - </td>
+                        <td>@holder.Nickname</td>
+                    </tr>
+                   }
+                   </table>
+               }
             </div>
         </div>
     </div>

@@ -82,6 +82,26 @@ namespace SC_MiniProject.DAL
             db.Set(holders);
         }
 
+        public string TopScorer()
+        {
+            var list = db.Get();
+            return list.Count > 0 ? list[0].Nickname : "?";
+        }
+
+        public int TopScore()
+        {
+            var list = db.Get();
+            return list.Count > 0 ? list[0].Score : -1;
+        }
+
+        public IList<ScoreHolder> OtherScores()
+        {
+            var list = new List<ScoreHolder>(db.Get());
+            if (list.Count == 0) return list;
+            list.RemoveAt(0);
+            return list;
+        }
+
 
         public void AddScore(string nick, int score)
         {

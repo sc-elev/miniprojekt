@@ -55,11 +55,7 @@ namespace SC_MiniProject.Controllers
             string[] sentences = ConfigFile.Sentences();
             int ix = rnd.Next(0, sentences.Length);
             string sentence = sentences[ix];
-            string replaced = (string) sentence.Clone();
-            foreach (var c in new string[] { ",", ".", "?"})
-                replaced = replaced.Replace(c, "*");
-            SentenceModel model =
-                new SentenceModel { visible = replaced, original = sentence};
+            SentenceModel model = new SentenceModel(sentence);
             ViewBag.Scoreboard = new Scoreboard();
             return View(model);
         }

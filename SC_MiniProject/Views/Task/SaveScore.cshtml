@@ -1,0 +1,16 @@
+﻿@model SC_MiniProject.DAL.ScoreHolder
+@{
+    ViewBag.Title = "Save Score";
+}
+
+<h2>Spara dina poäng </h2>
+
+Smeknamn:
+@using (Html.BeginForm())
+{
+    <br />
+    <input type="text" id="Nickname" name="Nickname" />
+    <input type="hidden" name="Score" value="@Model.Score" />
+    <br />
+    <input type="submit" value="Spara!"/>
+}

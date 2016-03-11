@@ -3,3 +3,14 @@
     ViewBag.Title = "Home Page";
 }
 
+
+
+<h2> Läs, skriv och samla poäng</h2>
+
+    <ul>
+        <li>@Html.ActionLink("Skriv rätt ord", "ImageRecognitionTask", "Task")</li>
+
+        <li>@Html.ActionLink("Skriv rätt skiljeteckend", "Delimiters", "Task")</li>
+
+        <li>@Html.ActionLink("Spara ditt poängrekord", "SaveScore", "Task")</li>
+    </ul>

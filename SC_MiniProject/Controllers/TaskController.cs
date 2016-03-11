@@ -61,7 +61,7 @@ namespace SC_MiniProject.Controllers
             SentenceModel model =
                 new SentenceModel { visible = replaced, original = sentence};
             ViewBag.Scoreboard = new Scoreboard();
-            return View("Delimiters", model);
+            return View(model);
         }
 
 
@@ -88,5 +88,23 @@ namespace SC_MiniProject.Controllers
             return View("BadDelimiter");
         }
 
+
+        public ViewResult SaveScore()
+        {
+            ViewBag.Scoreboard =  new Scoreboard();
+            ScoreHolder model = new ScoreHolder();
+            model.Score = ViewBag.Scoreboard.GetCurrentScore();
+            model.Nickname = "";
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public ActionResult SaveScore(ScoreHolder model)
+        {
+            Scoreboard board = new Scoreboard();
+            board.AddScore(model.Nickname, model.Score);
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

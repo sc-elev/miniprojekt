@@ -10,7 +10,8 @@ namespace SC_MiniProject.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var v = View("Index");
+            return View("Index");
         }
 
         public ActionResult About()

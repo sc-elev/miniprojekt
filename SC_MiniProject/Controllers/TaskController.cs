@@ -47,7 +47,9 @@ namespace SC_MiniProject.Controllers
         [HttpPost]
         public ActionResult ImageRecognitionQuestions_Post(TestResult testResult)
         {
-            Session["Points"] = testResult.Score;
+            var Alle = new Scoreboard();
+            Alle.SetCurrentScore(Alle.GetCurrentScore() + testResult.Score);
+
             return View();
 	}
 

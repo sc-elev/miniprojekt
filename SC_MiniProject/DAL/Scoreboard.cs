@@ -32,8 +32,12 @@ namespace SC_MiniProject.DAL
 
     public class SessionScoreDB: ScoreDB
     {
+        private IList<ScoreHolder> cachedList = null;
+        private int cachedCurrent = -1;
+
         public IList<ScoreHolder> Get()
         {
+            if (cachedList != null) return cachedList;
             if (HttpContext.Current.Session == null ||
                 HttpContext.Current.Session["scores"] == null)
             {
@@ -45,11 +49,13 @@ namespace SC_MiniProject.DAL
 
         public void Set(IList<ScoreHolder> holders)
         {
+            cachedList = holders;
             HttpContext.Current.Session["scores"] = holders;
         }
 
         public int GetCurrentScore()
         {
+            if (cachedCurrent != -1) return cachedCurrent;
             if (HttpContext.Current.Session == null ||
                 HttpContext.Current.Session["currentScore"] == null)
             {
@@ -60,6 +66,7 @@ namespace SC_MiniProject.DAL
 
         public void SetCurrentScore(int score)
         {
+            cachedCurrent = score;
             HttpContext.Current.Session["currentScore"] = score.ToString();
         }
     }

@@ -168,6 +168,7 @@
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="DAL\ConfigFile.cs" />
     <Compile Include="DAL\ImageRecognitionTask.cs" />
+    <Compile Include="DAL\Scoreboard.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1009,6 +1010,9 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Task\Delimiters.cshtml" />
+    <Content Include="settings.conf" />
+    <Content Include="Views\Task\BadDelimiter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

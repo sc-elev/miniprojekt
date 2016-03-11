@@ -23,7 +23,7 @@ namespace SC_MiniProject.Controllers
             // get list of all predefined ImageRecognitionQuestions.
             var sourceList = new ImageRecognitionTask().GetAllImageRecognitionQuestions();
 
-            // Get random list of 5 ImageRecognitionQuestions, in random order. 
+            // Get random list of 5 ImageRecognitionQuestions, in random order.
             var resultList = new List<ImageRecognition>();
             var rnd = new Random();
 
@@ -31,7 +31,7 @@ namespace SC_MiniProject.Controllers
             {
                 var img = rnd.Next(0, sourceList.Count);
                 var selectedItem = sourceList[img];
-                
+
                 var item = new ImageRecognition();
                     item.ImageUrl = selectedItem.ImageUrl;
                     item.CorrectAnswer = selectedItem.CorrectAnswer;
@@ -60,6 +60,7 @@ namespace SC_MiniProject.Controllers
                 replaced = replaced.Replace(c, "*");
             SentenceModel model =
                 new SentenceModel { visible = replaced, original = sentence};
+            ViewBag.Scoreboard = new Scoreboard();
             return View("Delimiters", model);
         }
 
@@ -67,10 +68,12 @@ namespace SC_MiniProject.Controllers
         [HttpPost]
         public ActionResult Delimiters(SentenceModel model)
         {
-            if ( model.userSentence == model.original)
+
+            if (model.userSentence == model.original)
             {
-                // FIXME: Add scores
-                return View();
+                ViewBag.Scoreboard = new Scoreboard();
+                model.SetCurrentScore(model.GetCurrentScore() + 1);
+                return Delimiters();
             }
             else
             {
@@ -81,8 +84,8 @@ namespace SC_MiniProject.Controllers
 
         public ViewResult BadDelimiter()
         {
+            ViewBag.Scoreboard = new Scoreboard();
             return View("BadDelimiter");
->>>>>>> Delimiters controller unitttest + UI
         }
 
     }

@@ -25,6 +25,8 @@ namespace SC_MiniProject.DAL
     {
         IList<ScoreHolder> Get();
         void Set(IList<ScoreHolder> holders);
+        int GetCurrentScore();
+        void SetCurrentScore(int score);
     }
 
 
@@ -45,12 +47,28 @@ namespace SC_MiniProject.DAL
         {
             HttpContext.Current.Session["scores"] = holders;
         }
+
+        public int GetCurrentScore()
+        {
+            if (HttpContext.Current.Session == null ||
+                HttpContext.Current.Session["currentScore"] == null)
+            {
+                SetCurrentScore(0);
+            }
+            return int.Parse((string)HttpContext.Current.Session["currentScore"]);
+        }
+
+        public void SetCurrentScore(int score)
+        {
+            HttpContext.Current.Session["currentScore"] = score.ToString();
+        }
     }
 
 
     public class TestScoreDB: ScoreDB
     {
         IList<ScoreHolder> holders = new List<ScoreHolder>();
+        int currentScore = 0;
 
         public IList<ScoreHolder> Get()
         {
@@ -61,6 +79,10 @@ namespace SC_MiniProject.DAL
         {
             this.holders = holders;
         }
+
+        public int GetCurrentScore() { return currentScore;  }
+
+        public void SetCurrentScore(int score) { currentScore = score;  }
     }
 
 
@@ -119,6 +141,12 @@ namespace SC_MiniProject.DAL
                 holders.RemoveAt(holders.Count - 1);
             db.Set(holders);
         }
+
+
+        public void SetCurrentScore(int score) { db.SetCurrentScore(score); }
+
+
+        public int GetCurrentScore() { return db.GetCurrentScore();  }
 
 
         public Scoreboard()

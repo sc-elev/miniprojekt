@@ -26,6 +26,8 @@
                     <li>@Html.ActionLink("Vad föreställer bilden?", "ImageRecognitionTask", "Task")</li>
 
                 </ul>
+                <div>Poäng: @ViewBag.Scoreboard.GetCurrentScore()</div>
+
                @if (ViewBag.Scoreboard.TopScore() > -1)
                {
                <text>Toppresultat:</text> @ViewBag.Scoreboard.TopScorer();

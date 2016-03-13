@@ -6,6 +6,11 @@
 *.user
 *.sln.docstates
 
+# Report generating stuff
+test-reports
+results.xml
+.nuget
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
+using System;
 using System.IO;
 using System.Linq;
 using JsonConfig;
@@ -12,17 +12,17 @@ using SC_MiniProject.Models;
 
 namespace SC_MIniProjectTest
 {
-    [TestClass]
+    [TestFixture]
     public class UnitTest1
     {
-        [TestMethod]
+        [Test]
         public void TestConfig()
         {
             string[] result = ConfigFile.GetFruits();
         }
 
 
-        [TestMethod]
+        [Test]
         public void SentenceCtrlReturnsModel()
         {
             var controller = new TaskController();
@@ -33,7 +33,7 @@ namespace SC_MIniProjectTest
         }
 
 
-        [TestMethod]
+        [Test]
         public void ScoreboardSortsAndLimitValues()
         {
             var db = new TestScoreDB();
@@ -57,7 +57,7 @@ namespace SC_MIniProjectTest
         }
 
 
-        [TestMethod]
+        [Test]
         public void ScoreBoardRemovesDups()
         {
             var db = new TestScoreDB();
@@ -70,15 +70,16 @@ namespace SC_MIniProjectTest
         }
 
 
-        [TestMethod]
+        [Test]
         public void ConfigileReturnsQuestions()
         {
+            var wd = Directory.GetCurrentDirectory();
             dynamic[] questions = ConfigFile.Questions();
             Assert.AreEqual("Hur mycket är 3 + 4? ", questions[0]["Q"]);
         }
 
 
-        [TestMethod]
+        [Test]
         public void QuestionsControllerSetsUpModel()
         {
             TaskController controller = new TaskController(new TestScoreDB());
@@ -88,7 +89,7 @@ namespace SC_MIniProjectTest
         }
 
 
-        [TestMethod]
+        [Test]
         public void QuestionsControllerCheckCorrectAnswer()
         {
             var scoreDB = new TestScoreDB();
@@ -104,7 +105,7 @@ namespace SC_MIniProjectTest
         }
 
 
-        [TestMethod]
+        [Test]
         public void QuestionsControllerCheckWrongAnswer()
         {
             var scoreDB = new TestScoreDB();

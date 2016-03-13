@@ -1,4 +1,5 @@
 ﻿using JsonConfig;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,12 +10,17 @@ namespace SC_MiniProject.DAL
 {
     public class ConfigFile
     {
+      
         protected static void ScanFiles()
         {
+         
+            string root = Path.GetFullPath(".");
+            if (TestContext.CurrentContext != null)
+                root = TestContext.CurrentContext.TestDirectory;
             string[] prefixes = new string[] { "../", "../../", "../../../" };
             foreach (var prefix in prefixes)
             {
-                string path = Path.GetFullPath(prefix + "settings.conf");
+                string path = Path.GetFullPath(root + prefix + "settings.conf");
                 if (System.IO.File.Exists(path))
                 {
                     string json = File.ReadAllText(path);

@@ -28,6 +28,8 @@ myApp.controller('TaskController', function ($scope, TaskService, $http, $window
             $scope.QuestionsAnsweredCorrectly++;
         }
 
+
+        $scope.UserAnswer = "";
         console.log("clicked answer..");
     }
 
@@ -37,6 +39,7 @@ myApp.controller('TaskController', function ($scope, TaskService, $http, $window
         $scope.CorrectAnswer = "";
         $scope.Answer = "";
         $scope.Correct = "";
+        $scope.UserAnswer = "";
 
         if ($scope.CurrentQuestion == 4) {
             $scope.NextButtonTitle = "Avsluta";

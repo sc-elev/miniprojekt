@@ -40,5 +40,11 @@ namespace SC_MiniProject.DAL
             ScanFiles();
             return Config.User.Sentences;
         }
+
+        public static object[] Questions()
+        {
+            ScanFiles();
+            return Config.User.Questions;
+        }
     }
 }

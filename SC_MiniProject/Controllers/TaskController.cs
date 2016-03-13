@@ -10,12 +10,14 @@ namespace SC_MiniProject.Controllers
 {
     public class TaskController : Controller
     {
+        protected ScoreDB scoreDB;
+
         private Random rnd = new Random();
         // (1) - ImageRecognitionTask
         // The user is presented with a series of images and is tasked with writing single words matching each of those images.
         public ActionResult ImageRecognitionTask()
         {
-            ViewBag.Scoreboard = new Scoreboard();
+            ViewBag.Scoreboard = new Scoreboard(scoreDB);
             return View();
         }
 
@@ -47,7 +49,7 @@ namespace SC_MiniProject.Controllers
         [HttpPost]
         public ActionResult ImageRecognitionQuestions_Post(TestResult testResult)
         {
-            var Alle = new Scoreboard();
+            var Alle = new Scoreboard(scoreDB);
             Alle.SetCurrentScore(Alle.GetCurrentScore() + testResult.Score);
 
             return View();
@@ -59,7 +61,7 @@ namespace SC_MiniProject.Controllers
             int ix = rnd.Next(0, sentences.Length);
             string sentence = sentences[ix];
             SentenceModel model = new SentenceModel(sentence);
-            ViewBag.Scoreboard = new Scoreboard();
+            ViewBag.Scoreboard = new Scoreboard(scoreDB);
             return View(model);
         }
 
@@ -70,7 +72,7 @@ namespace SC_MiniProject.Controllers
 
             if (model.userSentence == model.original)
             {
-                ViewBag.Scoreboard = new Scoreboard();
+                ViewBag.Scoreboard = new Scoreboard(scoreDB);
                 model.SetCurrentScore(model.GetCurrentScore() + 1);
                 return Delimiters();
             }
@@ -83,14 +85,14 @@ namespace SC_MiniProject.Controllers
 
         public ViewResult BadDelimiter()
         {
-            ViewBag.Scoreboard = new Scoreboard();
+            ViewBag.Scoreboard = new Scoreboard(scoreDB);
             return View("BadDelimiter");
         }
 
 
         public ViewResult SaveScore()
         {
-            ViewBag.Scoreboard =  new Scoreboard();
+            ViewBag.Scoreboard = new Scoreboard(scoreDB);
             ScoreHolder model = new ScoreHolder();
             model.Score = ViewBag.Scoreboard.GetCurrentScore();
             model.Nickname = "";
@@ -101,9 +103,44 @@ namespace SC_MiniProject.Controllers
         [HttpPost]
         public ActionResult SaveScore(ScoreHolder model)
         {
-            Scoreboard board = new Scoreboard();
+            Scoreboard board = new Scoreboard(scoreDB);
             board.AddScore(model.Nickname, model.Score);
             return RedirectToAction("Index", "Home");
+        }
+
+
+        public ViewResult Questions()
+        {
+            QuestionModel model = new QuestionModel();
+            dynamic[] questions = ConfigFile.Questions();
+            int ix = rnd.Next(0, questions.Length);
+            model.Question = questions[ix]["Q"];
+            model.Answer = questions[ix]["A"];
+            return View("Questions", model);
+        }
+
+
+        [HttpPost]
+        public RedirectToRouteResult Questions(QuestionModel model)
+        {
+            if (model.Reply != model.Answer)
+                return RedirectToAction("BadQuestionReply");
+            var board = new Scoreboard(scoreDB);
+            board.SetCurrentScore(board.GetCurrentScore() + 1);
+            ViewBag.Scoreboard = board;
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        public TaskController()
+        {
+            scoreDB = new SessionScoreDB();
+        }
+
+
+        public TaskController(ScoreDB db)
+        {
+            scoreDB = db;
         }
     }
 }

@@ -15,8 +15,13 @@ namespace SC_MiniProject.DAL
         {
          
             string root = Path.GetFullPath(".");
-            if (TestContext.CurrentContext != null)
-                root = TestContext.CurrentContext.TestDirectory;
+            try
+            {
+                if (TestContext.CurrentContext != null)
+                    root = TestContext.CurrentContext.TestDirectory;
+            }
+            catch (NullReferenceException) { }
+
             string[] prefixes = new string[] { "../", "../../", "../../../" };
             foreach (var prefix in prefixes)
             {

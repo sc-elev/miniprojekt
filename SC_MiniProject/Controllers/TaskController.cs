@@ -43,6 +43,7 @@ namespace SC_MiniProject.Controllers
                 sourceList.Remove(selectedItem);
             }
 
+            //throw new NotImplementedException("ImageRecognitionQuestions_Read");
             return Json(resultList, JsonRequestBehavior.AllowGet);
         }
 
@@ -53,7 +54,7 @@ namespace SC_MiniProject.Controllers
             Alle.SetCurrentScore(Alle.GetCurrentScore() + testResult.Score);
 
             return View();
-	}
+	    }
 
         public ViewResult Delimiters()
         {
